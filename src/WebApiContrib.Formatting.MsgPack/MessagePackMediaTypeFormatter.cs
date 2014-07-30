@@ -18,9 +18,9 @@ namespace WebApiContrib.Formatting.MsgPack
     {
         private const string mediaType = "application/x-msgpack";
 
-        private static readonly Func<Type, bool> IsAllowedType = (t) =>
+        private static bool IsAllowedType(Type t)
         {
-            if (!t.IsAbstract && !t.IsInterface && t != null && !t.IsNotPublic)
+            if (t != null && !t.IsAbstract && !t.IsInterface && !t.IsNotPublic)
                 return true;
 
             if (typeof(IEnumerable).IsAssignableFrom(t))
