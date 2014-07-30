@@ -45,7 +45,7 @@ namespace WebApiContrib.Formatting.MsgPack
         public override bool CanWriteType(Type type)
         {
             if (type == null)
-                throw new ArgumentNullException("Type is null");
+                throw new ArgumentNullException("type is null");
 
             return IsAllowedType(type);
         }
