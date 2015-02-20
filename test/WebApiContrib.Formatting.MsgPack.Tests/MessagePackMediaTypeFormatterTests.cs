@@ -1,12 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
-using System.Text;
-using System.Threading.Tasks;
 using NUnit.Framework;
 using Should;
-using WebApiContrib.Formatting.MsgPack;
 
 namespace WebApiContrib.Formatting.MsgPack.Tests
 {

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http.Formatting;
 using System.Net.Http.Headers;
-using MsgPack;
+using MsgPack.Serialization;
 
 namespace WebApiContrib.Formatting.MsgPack
 {
@@ -58,8 +58,8 @@ namespace WebApiContrib.Formatting.MsgPack
             object result;
             try
             {
-                var packer = new CompiledPacker(packPrivateField: false);
-                result = packer.Unpack(type, readStream);
+                var packer = SerializationContext.Default.GetSerializer(type);
+                result = packer.Unpack(readStream);
             }
             catch (Exception ex)
             {
@@ -84,9 +84,8 @@ namespace WebApiContrib.Formatting.MsgPack
             if (typeof(IEnumerable).IsAssignableFrom(type))
                 value = (value as IEnumerable<object>).ToList();
 
-            var packer = new CompiledPacker(packPrivateField: false);
-            byte[] buffer = packer.Pack(value);
-            writeStream.Write(buffer, 0, buffer.Length);
+            var packer = SerializationContext.Default.GetSerializer(type);
+            packer.Pack(writeStream, value);
         }
     }
 }
