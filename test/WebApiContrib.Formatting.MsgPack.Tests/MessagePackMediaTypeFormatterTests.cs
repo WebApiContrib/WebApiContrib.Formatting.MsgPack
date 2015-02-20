@@ -1,12 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
-using System.Text;
-using System.Threading.Tasks;
 using NUnit.Framework;
 using Should;
-using WebApiContrib.Formatting.MsgPack;
 
 namespace WebApiContrib.Formatting.MsgPack.Tests
 {
@@ -65,9 +60,9 @@ namespace WebApiContrib.Formatting.MsgPack.Tests
         }
 
         [Test]
-        public static void Test_Content_Should_Be_Readable_As_Url()
+        public static async void Test_Content_Should_Be_Readable_As_Url()
         {
-            var url = content.ReadAsAsync<Url>(new[] { formatter }).Result;
+            var url = await content.ReadAsAsync<Url>(new[] { formatter });
             url.ShouldBeSameAs(data);
         }
     }
