@@ -27,7 +27,7 @@ namespace WebApiContrib.Formatting.MsgPack
                 return true;
 
             return false;
-        };
+        }
 
         public MessagePackMediaTypeFormatter()
         {
