@@ -60,9 +60,9 @@ namespace WebApiContrib.Formatting.MsgPack.Tests
         }
 
         [Test]
-        public static void Test_Content_Should_Be_Readable_As_Url()
+        public static async void Test_Content_Should_Be_Readable_As_Url()
         {
-            var url = content.ReadAsAsync<Url>(new[] { formatter }).Result;
+            var url = await content.ReadAsAsync<Url>(new[] { formatter });
             url.ShouldBeSameAs(data);
         }
     }
